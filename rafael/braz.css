@@ -263,7 +263,7 @@ body::before {
   animation: surgir var(--dur) var(--ease);
 }
 .qr-caixa.aberto { display: block; }
-.qr-caixa canvas { display: block; width: 232px; height: 232px; }
+.qr-caixa canvas { display: block; width: 100%; max-width: 320px; height: auto; image-rendering: pixelated; }
 
 @keyframes surgir {
   from { opacity: 0; transform: translateY(10px) scale(0.97); }

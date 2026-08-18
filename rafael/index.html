@@ -137,8 +137,11 @@
          funciona igual no computador do Raí e no celular do vendedor. */
       var URL_PUBLICA = 'https://virtualmend8s-max.github.io/cartao-braz/rafael/';
 
+      /* Preto puro de propósito, não azul da marca: leitor de celular
+         (iPhone principalmente) precisa de contraste alto pra ler. O azul
+         #0001AD dava razão ~0.2:1 e alguns aparelhos não decodificavam. */
       QR.desenhar(canvas, URL_PUBLICA, {
-        escuro: '#0001AD', claro: '#FFFFFF', margem: 4
+        escuro: '#000000', claro: '#FFFFFF', margem: 4
       });
       desenhado = true;
     }
