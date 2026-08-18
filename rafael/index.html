@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rafael Gonçalves · Braz Móvel</title>
+<meta name="description" content="Rafael Gonçalves, Executivo de Vendas da Braz Móvel. Fale direto por WhatsApp, telefone ou e-mail.">
+<meta name="theme-color" content="#00016B">
+<link rel="stylesheet" href="braz.css">
+</head>
+<body>
+
+<main class="tela">
+
+  <header class="topo">
+    <img src="assets/logo-braz-branco.png" alt="Braz Móvel">
+  </header>
+
+  <section class="pessoa">
+    <div class="retrato">
+      <img id="foto" alt="" hidden>
+      <span class="iniciais" id="iniciais" aria-hidden="true">RG</span>
+      <button class="foto-btn" id="btn-foto" type="button" aria-label="Escolher foto do perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </button>
+      <input type="file" id="input-foto" accept="image/*" hidden>
+    </div>
+    <h1 class="nome">Rafael<br>Gonçalves</h1>
+    <p class="cargo">Executivo de Vendas</p>
+  </section>
+
+  <nav class="acoes" aria-label="Formas de contato">
+
+    <a class="btn btn--principal" href="https://wa.me/5512982047569?text=Ol%C3%A1%20Rafael%2C%20vim%20pelo%20QR%20Code%20da%20Braz%20M%C3%B3vel." target="_blank" rel="noopener">
+      <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.15.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.88 2.35 1 2.51c.12.16 1.72 2.63 4.17 3.69.58.25 1.04.4 1.39.51.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      <span class="rotulo">WhatsApp</span>
+      <span class="seta" aria-hidden="true">›</span>
+    </a>
+
+    <a class="btn" href="tel:+5512982047569">
+      <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="rotulo">12 98204-7569</span>
+      <span class="seta" aria-hidden="true">›</span>
+    </a>
+
+    <a class="btn" href="mailto:rafael.goncalves@grupoitnet.com.br">
+      <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      <span class="rotulo">E-mail</span>
+      <span class="seta" aria-hidden="true">›</span>
+    </a>
+
+    <button class="btn" id="btn-vcf" type="button">
+      <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      <span class="rotulo">Salvar contato</span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
+
+  </nav>
+
+  <section class="qr-area">
+    <button class="btn" id="btn-qr" type="button" aria-expanded="false" aria-controls="qr-caixa">
+      <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/></svg>
+      <span class="rotulo">Mostrar QR Code</span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
+    <div class="qr-caixa" id="qr-caixa">
+      <canvas id="qr" width="464" height="464" aria-label="QR Code desta página"></canvas>
+    </div>
+    <p class="qr-dica" id="qr-dica" hidden>Peça para o cliente apontar a câmera do celular</p>
+  </section>
+
+  <footer class="rodape">
+    <p class="disclaimer">
+      Credenciada de Rede Virtual, nos termos da regulamentação vigente da Anatel.
+      Serviço Móvel Pessoal prestado pela Vivo.
+    </p>
+  </footer>
+
+</main>
+
+<script src="qr.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var VENDEDOR = {
+    nome:     'Rafael Gonçalves',
+    cargo:    'Executivo de Vendas',
+    telefone: '+5512982047569',
+    email:    'rafael.goncalves@grupoitnet.com.br',
+    empresa:  'Braz Móvel · Grupo Itnet',
+    site:     'https://virtualmend8s-max.github.io/cartao-braz/rafael/'
+  };
+
+  /* ---- Foto do perfil: o dono escolhe a dele, fica salva neste navegador ---- */
+  var btnFoto   = document.getElementById('btn-foto');
+  var inputFoto = document.getElementById('input-foto');
+  var imgFoto   = document.getElementById('foto');
+  var iniciais  = document.getElementById('iniciais');
+  var CHAVE_FOTO = 'braz-cartao-foto';
+
+  function aplicarFoto(dataUrl) {
+    imgFoto.src = dataUrl;
+    imgFoto.hidden = false;
+    iniciais.hidden = true;
+  }
+
+  var salva = null;
+  try { salva = localStorage.getItem(CHAVE_FOTO); } catch (e) {}
+  if (salva) { aplicarFoto(salva); }
+
+  btnFoto.addEventListener('click', function () { inputFoto.click(); });
+
+  inputFoto.addEventListener('change', function () {
+    var arquivo = inputFoto.files && inputFoto.files[0];
+    if (!arquivo) return;
+    var leitor = new FileReader();
+    leitor.onload = function () {
+      aplicarFoto(leitor.result);
+      try { localStorage.setItem(CHAVE_FOTO, leitor.result); } catch (e) {}
+    };
+    leitor.readAsDataURL(arquivo);
+  });
+
+  /* ---- QR ---- */
+  var btnQr  = document.getElementById('btn-qr');
+  var caixa  = document.getElementById('qr-caixa');
+  var dica   = document.getElementById('qr-dica');
+  var canvas = document.getElementById('qr');
+  var desenhado = false;
+
+  btnQr.addEventListener('click', function () {
+    var abrindo = !caixa.classList.contains('aberto');
+    if (abrindo && !desenhado) {
+      /* Endereço público do cartão (GitHub Pages). O QR aponta SEMPRE para cá,
+         mesmo quando o arquivo é aberto localmente por file:// — assim o QR
+         funciona igual no computador do Raí e no celular do vendedor. */
+      var URL_PUBLICA = 'https://virtualmend8s-max.github.io/cartao-braz/rafael/';
+
+      QR.desenhar(canvas, URL_PUBLICA, {
+        escuro: '#0001AD', claro: '#FFFFFF', margem: 4
+      });
+      desenhado = true;
+    }
+    caixa.classList.toggle('aberto', abrindo);
+    dica.hidden = !abrindo;
+    btnQr.setAttribute('aria-expanded', String(abrindo));
+    btnQr.querySelector('.rotulo').textContent = abrindo ? 'Esconder QR Code' : 'Mostrar QR Code';
+  });
+
+  /* ---- vCard gerado no próprio navegador, sem servidor ---- */
+  document.getElementById('btn-vcf').addEventListener('click', function () {
+    var partes = VENDEDOR.nome.split(' ');
+    var primeiro = partes.shift();
+    var resto = partes.join(' ');
+    var vcf = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:' + resto + ';' + primeiro + ';;;',
+      'FN:' + VENDEDOR.nome,
+      'ORG:' + VENDEDOR.empresa,
+      'TITLE:' + VENDEDOR.cargo,
+      'TEL;TYPE=CELL:' + VENDEDOR.telefone,
+      'EMAIL;TYPE=WORK:' + VENDEDOR.email,
+      'URL:' + VENDEDOR.site,
+      'END:VCARD'
+    ].join('\r\n');
+
+    var blob = new Blob(['﻿' + vcf], { type: 'text/vcard;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = primeiro.toLowerCase() + '-braz.vcf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+})();
+</script>
+
+</body>
+</html>

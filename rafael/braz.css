@@ -1,0 +1,307 @@
+/* braz.css — tokens e estilos do cartão de vendedor Braz Móvel
+   Paleta e tipografia conforme brand-identity.md (lido em 2026-08-18).
+   Direção visual derivada das artes reais anexadas pelo Raí:
+   fundo azul profundo com luz difusa em diagonal, CTA em pílula de contorno
+   amarelo, cards com hairline azul luminosa. */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* cores oficiais da marca */
+  --azul:        #0001AD;
+  --amarelo:     #FFD13B;
+  --laranja:     #FF624D;
+  --roxo:        #6924F5;
+  --verde:       #00D3AA;
+  --branco:      #FFFFFF;
+  --preto:       #000000;
+
+  /* superfícies derivadas (variação de luminosidade do azul oficial,
+     não cor nova — mesma família, como nas artes) */
+  --fundo-base:  #000042;
+  --fundo-alto:  #10119B;
+  --superficie:  rgba(255, 255, 255, 0.06);
+  --hairline:    rgba(255, 255, 255, 0.16);
+  --hairline-forte: rgba(255, 255, 255, 0.28);
+
+  /* texto */
+  --txt:         #FFFFFF;
+  --txt-suave:   rgba(255, 255, 255, 0.62);
+
+  /* escala tipográfica */
+  --t-nome:      clamp(30px, 8.5vw, 40px);
+  --t-cargo:     14px;
+  --t-botao:     16px;
+  --t-micro:     12px;
+
+  /* espaçamento */
+  --gap-xs: 8px;
+  --gap-s:  12px;
+  --gap-m:  20px;
+  --gap-l:  32px;
+  --gap-xl: 48px;
+
+  /* forma */
+  --r-card:   24px;
+  --r-botao:  16px;
+  --r-total:  999px;
+
+  /* movimento — curva Apple-like, sem exagero */
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur:  420ms;
+
+  /* alvo de toque mínimo */
+  --toque: 48px;
+}
+
+/* ---------- Fonte ---------- */
+/* Open Sans é a fonte oficial. Inlined via @font-face abaixo quando houver
+   arquivo local; o fallback mantém métrica próxima e nunca cai em Inter/system-ui,
+   que é a assinatura visual de template genérico. */
+@font-face {
+  font-family: 'Open Sans Local';
+  src: local('Open Sans'), local('OpenSans-Regular');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans Local';
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans Local';
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold');
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Open Sans Local', 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
+  background: var(--fundo-base);
+  color: var(--txt);
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  padding: var(--gap-m) var(--gap-m) var(--gap-xl);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* luz difusa diagonal — o gradiente das artes reais.
+   Duas fontes de luz da mesma família azul, nunca duas cores diferentes. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20% -20% auto -20%;
+  height: 90vh;
+  background:
+    radial-gradient(60% 55% at 22% 8%, var(--fundo-alto) 0%, transparent 62%),
+    radial-gradient(52% 48% at 88% 32%, #1A1BB0 0%, transparent 58%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tela {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-l);
+}
+
+/* Marca d'água removida em 2026-08-18 a pedido do Raí: a textura do símbolo
+   atrás do conteúdo poluía o cartão. Fundo fica liso (azul + luz difusa). */
+
+/* ---------- Topo ---------- */
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--gap-xs);
+}
+
+/* Logo branca oficial, sem filtro. O glow ("smooth") foi removido em
+   2026-08-18: 4 tentativas de calibrar viraram névoa em volta da logo. */
+.topo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+/* ---------- Identificação ---------- */
+.pessoa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--gap-s);
+  padding-top: var(--gap-xs);
+}
+
+.retrato {
+  width: 116px;
+  height: 116px;
+  border-radius: var(--r-total);
+  background: var(--superficie);
+  border: 1px solid var(--hairline-forte);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.retrato img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* placeholder com iniciais enquanto não há foto */
+.retrato .iniciais {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--amarelo);
+  letter-spacing: -0.02em;
+}
+
+/* botão de troca de foto - o dono do cartão escolhe a dele.
+   Fica discreto sobre o retrato, sem competir com o rosto. */
+.foto-btn {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hairline-forte);
+  border-radius: var(--r-total);
+  background: rgba(0, 0, 66, 0.72);
+  color: var(--txt);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.foto-btn svg { width: 15px; height: 15px; display: block; }
+.foto-btn:active { transform: scale(0.94); }
+@media (hover: hover) {
+  .foto-btn:hover { background: var(--azul); }
+}
+
+.nome {
+  font-size: var(--t-nome);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.cargo {
+  font-size: var(--t-cargo);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+}
+
+/* ---------- Botões ---------- */
+.acoes { display: flex; flex-direction: column; gap: var(--gap-s); }
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-s);
+  min-height: var(--toque);
+  padding: 14px var(--gap-m);
+  border-radius: var(--r-botao);
+  font-size: var(--t-botao);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--hairline);
+  background: var(--superficie);
+  color: var(--txt);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.btn:active { transform: scale(0.975); }
+
+@media (hover: hover) {
+  .btn:hover { background: rgba(255, 255, 255, 0.11); border-color: var(--hairline-forte); }
+}
+
+/* ação principal — sólida amarela, texto azul (contraste obrigatório do brand) */
+.btn--principal {
+  background: var(--amarelo);
+  color: var(--azul);
+  border-color: var(--amarelo);
+  font-weight: 800;
+}
+@media (hover: hover) {
+  .btn--principal:hover { background: #FFDA5E; border-color: #FFDA5E; }
+}
+
+.btn .icone { width: 22px; height: 22px; flex: none; }
+.btn .rotulo { flex: 1; }
+.btn .seta { opacity: 0.45; font-size: 18px; }
+
+/* ---------- QR ---------- */
+.qr-area { display: flex; flex-direction: column; align-items: center; gap: var(--gap-s); }
+
+.qr-caixa {
+  background: var(--branco);
+  border-radius: var(--r-card);
+  padding: 16px;
+  display: none;
+  animation: surgir var(--dur) var(--ease);
+}
+.qr-caixa.aberto { display: block; }
+.qr-caixa canvas { display: block; width: 232px; height: 232px; }
+
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.qr-dica { font-size: var(--t-micro); color: var(--txt-suave); text-align: center; }
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--gap-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+.disclaimer {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--txt-suave);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---------- Acessibilidade ---------- */
+.btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--amarelo);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Impressão ---------- */
+@media print {
+  body::before { display: none; }
+  body { background: var(--branco); color: var(--preto); }
+}
