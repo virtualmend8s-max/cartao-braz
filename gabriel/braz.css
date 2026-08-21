@@ -232,7 +232,10 @@ body::before {
   cursor: pointer;
   font-family: inherit;
   width: 100%;
-  text-align: left;
+  /* Centralizado em 2026-08-21: o bloco de cima (foto/nome/cargo) é centrado;
+     conteúdo de botão à esquerda fazia as duas metades parecerem desalinhadas. */
+  justify-content: center;
+  text-align: center;
 }
 
 .btn:active { transform: scale(0.975); }
