@@ -232,10 +232,9 @@ body::before {
   cursor: pointer;
   font-family: inherit;
   width: 100%;
-  /* Centralizado em 2026-08-21: o bloco de cima (foto/nome/cargo) é centrado;
-     conteúdo de botão à esquerda fazia as duas metades parecerem desalinhadas. */
-  justify-content: center;
-  text-align: center;
+  /* Conteúdo à esquerda, padrão de lista. Tentei centralizar em 2026-08-21 e
+     ficou errado: com ícone só de um lado, rótulo centrado desequilibra. */
+  text-align: left;
 }
 
 .btn:active { transform: scale(0.975); }
