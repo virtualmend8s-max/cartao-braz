@@ -1,0 +1,298 @@
+/* braz.css — página oficial de links da Braz Móvel
+   Derivada do cartão de vendedor (mesmos tokens, já validados no celular do Raí
+   em 2026-08-18). Paleta e tipografia conforme brand-identity.md.
+
+   Diferenças em relação ao cartão de vendedor:
+   - não há foto/nome/cargo: o bloco de identificação é a MARCA;
+   - botões têm rótulo + subrótulo (a linha de baixo diz o que o clique entrega,
+     que é o que separa link-in-bio profissional de lista de links);
+   - CTA dominante único (Planos, amarelo sólido); os outros 4 são de contorno. */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* cores oficiais da marca */
+  --azul:        #0001AD;
+  --amarelo:     #FFD13B;
+  --laranja:     #FF624D;
+  --roxo:        #6924F5;
+  --verde:       #00D3AA;
+  --branco:      #FFFFFF;
+  --preto:       #000000;
+
+  /* superfícies derivadas (variação de luminosidade do azul oficial,
+     não cor nova — mesma família, como nas artes) */
+  --fundo-base:  #000042;
+  --fundo-alto:  #10119B;
+  --superficie:  rgba(255, 255, 255, 0.06);
+  --hairline:    rgba(255, 255, 255, 0.16);
+  --hairline-forte: rgba(255, 255, 255, 0.28);
+
+  /* texto */
+  --txt:         #FFFFFF;
+  --txt-suave:   rgba(255, 255, 255, 0.62);
+
+  /* escala tipográfica */
+  --t-chamada:   clamp(26px, 7.4vw, 34px);
+  --t-arroba:    13px;
+  --t-apoio:     13px;
+  --t-botao:     16px;
+  --t-sub:       12px;
+  --t-micro:     12px;
+
+  /* espaçamento */
+  --gap-xs: 8px;
+  --gap-s:  12px;
+  --gap-m:  20px;
+  --gap-l:  32px;
+  --gap-xl: 48px;
+
+  /* forma */
+  --r-card:   24px;
+  --r-botao:  16px;
+  --r-total:  999px;
+
+  /* movimento — curva Apple-like, sem exagero */
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur:  420ms;
+
+  /* alvo de toque mínimo */
+  --toque: 48px;
+}
+
+/* ---------- Fonte ---------- */
+/* Open Sans é a fonte oficial. O fallback mantém métrica próxima e nunca cai em
+   Inter/system-ui, que é a assinatura visual de template genérico. */
+@font-face {
+  font-family: 'Open Sans Local';
+  src: local('Open Sans'), local('OpenSans-Regular');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans Local';
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans Local';
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold');
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+/* overflow-x no HTML além do body: a luz de fundo (body::before) é
+   `position: fixed` e estoura a viewport de propósito; `overflow-x` no body
+   não corta elemento fixed. É trava preventiva, não correção de defeito.
+   Medido em viewport real de 390x844 (via CDP): scrollWidth = 390, sem estouro. */
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+
+body {
+  font-family: 'Open Sans Local', 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
+  background: var(--fundo-base);
+  color: var(--txt);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-l) var(--gap-m) var(--gap-xl);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* luz difusa diagonal — o gradiente das artes reais.
+   Duas fontes de luz da mesma família azul, nunca duas cores diferentes. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20% -20% auto -20%;
+  height: 90vh;
+  background:
+    radial-gradient(60% 55% at 22% 8%, var(--fundo-alto) 0%, transparent 62%),
+    radial-gradient(52% 48% at 88% 32%, #1A1BB0 0%, transparent 58%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tela {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-l);
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--gap-xs);
+}
+
+/* Logo branca oficial, sem filtro nem glow (removido em 2026-08-18: virou névoa). */
+.topo img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+/* ---------- Bloco de marca ---------- */
+/* Ocupa o lugar do retrato/nome do cartão de vendedor. Sem foto: quem assina
+   aqui é a marca, e a hierarquia é arroba → chamada → apoio. */
+.marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--gap-xs);
+}
+
+.arroba {
+  font-size: var(--t-arroba);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--amarelo);
+}
+
+.chamada {
+  font-size: var(--t-chamada);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.linha-apoio {
+  font-size: var(--t-apoio);
+  font-weight: 600;
+  color: var(--txt-suave);
+}
+
+/* ---------- Botões ---------- */
+.acoes { display: flex; flex-direction: column; gap: var(--gap-s); width: 100%; min-width: 0; }
+
+.btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: var(--gap-s);
+  min-height: var(--toque);
+  padding: 13px var(--gap-m);
+  border-radius: var(--r-botao);
+  font-size: var(--t-botao);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--hairline);
+  background: var(--superficie);
+  color: var(--txt);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  cursor: pointer;
+  font-family: inherit;
+  /* Conteúdo à esquerda, padrão de lista. Centralizar foi tentado em 2026-08-21
+     e ficou errado: com ícone só de um lado, rótulo centrado desequilibra. */
+  text-align: left;
+}
+
+.btn:active { transform: scale(0.975); }
+
+@media (hover: hover) {
+  .btn:hover { background: rgba(255, 255, 255, 0.11); border-color: var(--hairline-forte); }
+}
+
+/* ação principal — sólida amarela, texto azul (contraste obrigatório do brand).
+   É a ÚNICA sólida da página: um CTA dominante por tela. */
+.btn--principal {
+  background: var(--amarelo);
+  color: var(--azul);
+  border-color: var(--amarelo);
+  font-weight: 800;
+}
+@media (hover: hover) {
+  .btn--principal:hover { background: #FFDA5E; border-color: #FFDA5E; }
+}
+
+.btn .icone { width: 22px; height: 22px; flex: none; }
+
+.btn .rotulo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.25;
+}
+
+/* subrótulo: diz o que o clique entrega. Sem preço de propósito — a página
+   atende B2B e B2C ao mesmo tempo. */
+.btn .sub {
+  font-size: var(--t-sub);
+  font-weight: 400;
+  color: var(--txt-suave);
+}
+.btn--principal .sub { color: rgba(0, 1, 173, 0.72); font-weight: 600; }
+
+.btn .seta { opacity: 0.45; font-size: 18px; flex: none; }
+.btn--principal .seta { opacity: 0.6; }
+
+/* entrada escalonada — sutil, só na primeira carga */
+@media (prefers-reduced-motion: no-preference) {
+  /* `backwards`, não `both`: com `both` o estado inicial (opacity: 0) fica
+     valendo antes da animação rodar, e qualquer falha de animação apaga a
+     página institucional inteira. Com `backwards` o fim é o estado natural
+     do CSS (visível), então o pior caso é aparecer sem animar. */
+  .btn { animation: subir var(--dur) var(--ease) backwards; }
+  .btn:nth-child(1) { animation-delay: 40ms; }
+  .btn:nth-child(2) { animation-delay: 90ms; }
+  .btn:nth-child(3) { animation-delay: 140ms; }
+  .btn:nth-child(4) { animation-delay: 190ms; }
+  .btn:nth-child(5) { animation-delay: 240ms; }
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--gap-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+.disclaimer {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--txt-suave);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---------- Acessibilidade ---------- */
+.btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--amarelo);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Impressão ---------- */
+@media print {
+  body::before { display: none; }
+  body { background: var(--branco); color: var(--preto); }
+}
