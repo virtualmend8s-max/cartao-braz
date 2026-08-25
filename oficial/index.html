@@ -24,10 +24,19 @@
     <img src="assets/logo-braz-branco.png" alt="Braz Móvel">
   </header>
 
+  <!-- Bloco de marca: o mascote saindo do bolso ocupa o lugar que antes era da
+       frase-chamada. A assinatura "saindo de um bolso" é fixa na identidade do
+       personagem, e a placa que ele ergue já carrega a marca — por isso aqui não
+       entra headline: a imagem é a mensagem. O h1 vira texto acessível (lido por
+       leitor de tela e pelo Google, invisível na tela). -->
   <section class="marca">
-    <p class="arroba">@brazmovel</p>
-    <h1 class="chamada">O 5G que cabe<br>no seu bolso</h1>
-    <p class="linha-apoio">Cobertura nacional · Ligações ilimitadas</p>
+    <h1 class="oculto">Braz Móvel · o 5G que cabe no seu bolso</h1>
+    <picture>
+      <source srcset="assets/mascote-bolso.webp" type="image/webp">
+      <img class="mascote" src="assets/mascote-bolso.png"
+           alt="Mascote da Braz Móvel saindo de um bolso segurando a placa Braz Móvel"
+           width="401" height="640" fetchpriority="high" decoding="async">
+    </picture>
   </section>
 
   <nav class="acoes" aria-label="Links oficiais da Braz Móvel">

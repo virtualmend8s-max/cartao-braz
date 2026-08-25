@@ -145,36 +145,38 @@ body::before {
 }
 
 /* ---------- Bloco de marca ---------- */
-/* Ocupa o lugar do retrato/nome do cartão de vendedor. Sem foto: quem assina
-   aqui é a marca, e a hierarquia é arroba → chamada → apoio. */
+/* Ocupa o lugar do retrato/nome do cartão de vendedor. Aqui quem assina é o
+   mascote saindo do bolso (2026-08-25: substituiu a frase-chamada). */
 .marca {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--gap-xs);
+  justify-content: center;
+  margin-top: calc(var(--gap-l) * -1);
+  margin-bottom: calc(var(--gap-m) * -1);
 }
 
-.arroba {
-  font-size: var(--t-arroba);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: lowercase;
-  color: var(--amarelo);
+/* Altura em `vh` e não em px: o gargalo desta página é a primeira dobra —
+   os 5 botões precisam caber sem rolagem. Amarrando o mascote à altura da
+   janela, ele encolhe junto no celular baixo (iPhone SE) em vez de empurrar
+   o CTA para fora da tela. O teto de 260px impede que ele vire um outdoor
+   no desktop, onde `vh` seria enorme. */
+.mascote {
+  height: clamp(150px, 27vh, 260px);
+  width: auto;
+  display: block;
+  /* sombra projetada seguindo o contorno do recorte (não a caixa da imagem),
+     para o boneco assentar no fundo em vez de flutuar colado. */
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 40, 0.55));
 }
 
-.chamada {
-  font-size: var(--t-chamada);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  text-wrap: balance;
-}
-
-.linha-apoio {
-  font-size: var(--t-apoio);
-  font-weight: 600;
-  color: var(--txt-suave);
+/* Título acessível: sai da tela mas continua existindo para leitor de tela
+   e para o buscador. Não usar `display: none`, que remove das duas coisas. */
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ---------- Botões ---------- */
