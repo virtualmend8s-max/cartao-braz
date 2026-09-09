@@ -125,9 +125,10 @@
     text-wrap: pretty;
   }
 
-  /* Tela baixa (Android com barra + botões): remove o respiro extra
-     de cima/baixo antes de deixar qualquer coisa cortar. */
-  @media (max-height: 780px) {
+  /* Tela muito baixa: só aí vale colar no topo e liberar rolagem,
+     porque o conteúdo realmente não cabe. Acima disso, permanece
+     centralizado — senão sobra uma faixa morta no pé da tela. */
+  @media (max-height: 600px) {
     body { justify-content: flex-start; padding-top: var(--gap); }
   }
 </style>
